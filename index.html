@@ -19,23 +19,18 @@
 
     #timer {
       font-size: 40px;
-      margin: 20px 0 10px;
+      margin: 10px 0 10px;
+      height: 5px;
+      font-weight: bold;
     }
 
-    .button-group.row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .button-group.actions {
+    .button-group {
       display: flex;
       justify-content: center;
       gap: 10px;
       max-width: 100%;
       margin: 20px 0;
+      flex-wrap: wrap;
     }
 
     .button-wrapper {
@@ -43,6 +38,11 @@
       flex-direction: column;
       align-items: center;
       flex: 1;
+      max-width: 100%;
+    }
+
+    .button-wrapper button {
+      width: 100%;
     }
 
     .counter-label {
@@ -51,29 +51,22 @@
       margin-bottom: 10px;
     }
 
-    .button-group.actions button {
-      width: 100%;
-      height: 350px;
+    .button-group .button-wrapper button {
+      height: 360px;
       font-size: 28px;
     }
 
-    .button-group.controls button {
-      font-size: 18px;
+    .button-group.controls .button-wrapper button {
+      height: auto;
       padding: 16px;
-      width: 140px;
+      font-size: 20px;
     }
 
-    .button-group.column {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin: 20px auto;
-      max-width: 400px;
+    .placeholder {
+      height: 34px; /* Sayaç hizası boşluğu için */
     }
 
     button {
-      font-size: 20px;
-      padding: 20px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
@@ -89,20 +82,34 @@
     #trueBtn { background-color: #2196F3; color: white; }
     #falseBtn { background-color: #ff9800; color: white; }
     #counterResetBtn { background-color: #9c27b0; color: white; }
+
+    #counterResetBtn {
+      font-size: 20px;
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      height: 50px;
+      max-width: 400px;
+    }
   </style>
 </head>
 <body>
-
   <div id="timer">00:00:00</div>
 
-  <!-- Kronometre butonları YAN YANA -->
-  <div class="button-group row controls">
-    <button id="startStopBtn">Başlat</button>
-    <button id="resetBtn">Sıfırla</button>
+  <!-- Başlat / Sıfırla butonları aynı hizalı -->
+  <div class="button-group controls">
+    <div class="button-wrapper">
+      <div class="placeholder"></div>
+      <button id="startStopBtn">Başlat</button>
+    </div>
+    <div class="button-wrapper">
+      <div class="placeholder"></div>
+      <button id="resetBtn">Sıfırla</button>
+    </div>
   </div>
 
-  <!-- Doğru / Yanlış butonları ve sayaçlar -->
-  <div class="button-group actions">
+  <!-- Doğru / Yanlış butonları -->
+  <div class="button-group">
     <div class="button-wrapper">
       <div class="counter-label" id="trueCount">0</div>
       <button id="trueBtn">✅ Doğru</button>
@@ -113,10 +120,8 @@
     </div>
   </div>
 
-  <!-- Sayaçları sıfırlama butonu -->
-  <div style="max-width: 400px; margin: 20px auto;">
-    <button id="counterResetBtn">Sayaçları Sıfırla</button>
-  </div>
+  <!-- Sayaçları sıfırla -->
+  <button id="counterResetBtn">Sayaçları Sıfırla</button>
 
   <script>
     let timerInterval;
